@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Ícone na parte superior -->
     <LinearLayout
@@ -14,16 +15,16 @@
         android:padding="16dp">
 
     </LinearLayout>
-    <!-- Feed na parte central -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/navTop"
+        tools:itemCount="200"
         android:layout_above="@id/navBotton"
         android:layout_margin="20dp"/>
 
-    <!-- Ícones na parte inferior -->
     <LinearLayout
         android:id="@+id/navBotton"
         android:layout_width="match_parent"

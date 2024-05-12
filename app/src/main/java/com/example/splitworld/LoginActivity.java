@@ -8,13 +8,12 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private Button btnWithoutAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnWithoutAccount = findViewById(R.id.buttonWithoutAccount);
+        Button btnWithoutAccount = findViewById(R.id.buttonWithoutAccount);
         btnWithoutAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
