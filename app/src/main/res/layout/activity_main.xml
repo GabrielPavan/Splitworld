@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Ícone na parte superior -->
+    <LinearLayout
+        android:id="@+id/navTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/blue"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+    </LinearLayout>
+    <!-- Feed na parte central -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/feedRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/navTop"
+        android:layout_above="@id/navBotton"
+        android:layout_margin="20dp"/>
+
+    <!-- Ícones na parte inferior -->
+    <LinearLayout
+        android:id="@+id/navBotton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/icon1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:layout_weight="1"
+            android:src="@drawable/menbers"
+            android:layout_marginEnd="8dp"/>
+
+        <ImageView
+            android:id="@+id/icon2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:layout_weight="1"
+            android:src="@drawable/add"
+            android:layout_marginEnd="8dp"/>
+
+        <ImageView
+            android:id="@+id/icon3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:layout_weight="1"
+            android:src="@drawable/calendar"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
