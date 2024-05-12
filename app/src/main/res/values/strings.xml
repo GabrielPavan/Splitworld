@@ -2,7 +2,8 @@
     <string name="app_name">Splitworld</string>
     <string name="login_user_hint">Mail</string>
     <string name="login_password_hint">Password</string>
-    <string name="login_Loginbutton_text">Login</string>
-    <string name="login_NewAccountbutton_text">Create a Trip</string>
+    <string name="login_LoginButton_text">Login</string>
+    <string name="login_WithoutAccount_text">Access without account</string>
     <string name="login_main_img_description">Main Logo</string>
+    <string name="login_CreateAccount_label">Create a account</string>
 </resources>
