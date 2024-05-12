@@ -4,6 +4,10 @@
     android:layout_height="match_parent">
 
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -24,7 +28,8 @@
         android:layout_marginTop="52dp"
         android:autofillHints="Mail"
         android:hint="@string/login_user_hint"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/black"/>
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -35,7 +40,8 @@
         android:layout_marginTop="20dp"
         android:hint="@string/login_password_hint"
         android:inputType="textPassword"
-        android:autofillHints="Password"/>
+        android:autofillHints="Password"
+        android:textColorHint="@color/black"/>
 
     <Button
         android:id="@+id/buttonLogin"
