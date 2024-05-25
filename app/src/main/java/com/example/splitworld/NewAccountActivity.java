@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.splitworld.database.dao.MemberDAO;
 import com.example.splitworld.database.dao.UserDAO;
+import com.example.splitworld.database.model.MemberModel;
 import com.example.splitworld.database.model.UserModel;
 import com.example.splitworld.util.SharedKey;
 
@@ -36,8 +38,9 @@ public class NewAccountActivity extends AppCompatActivity {
         btnCreateAccount = findViewById(R.id.buttonCreateAccount);
 
         btnCreateAccount.setOnClickListener(v -> {
+            UserModel userModel = new UserModel();
+            MemberModel memberModel = new MemberModel();
             if (validateAllFields()) {
-                UserModel userModel = new UserModel();
                 userModel.setName(edtName.getText().toString());
                 userModel.setEmail(edtMail.getText().toString());
                 if (edtPassword.getText().toString().equals(edtConfPassword.getText().toString())){
@@ -49,8 +52,16 @@ public class NewAccountActivity extends AppCompatActivity {
                     edtConfPassword.setBackgroundResource(R.drawable.edittext_border_red);
                     return;
                 }
+
+                memberModel.setName(userModel.getName());
+                memberModel.setTotal_loan(0.0);
+                memberModel.setTotal_paid(0.0);
+
                 UserDAO userDAO = new UserDAO(NewAccountActivity.this);
+                MemberDAO memberDAO = new MemberDAO(NewAccountActivity.this);
+
                 userDAO.Insert(userModel);
+                memberDAO.Insert(memberModel);
                 showSuccessInsertDialog();
             } else {
                 Toast.makeText(NewAccountActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();

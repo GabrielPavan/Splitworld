@@ -57,7 +57,7 @@ public class UserDAO extends AbstrataDAO{
             Close();
         }
     }
-    public void DeleteALL(final long idUser){
+    public void DeleteALL(){
         try {
             Open();
             db.delete(UserModel.TABLE_NAME, null, null);
