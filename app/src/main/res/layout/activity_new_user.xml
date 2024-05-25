@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="275dp"
-        android:layout_height="275dp"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
         android:scaleType="fitCenter"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
@@ -20,12 +19,29 @@
         android:src="@drawable/splitworld" />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/editTextNameCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="50dp"
+        android:autofillHints="Mail"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:hint="@string/login_name_hint"
+        android:background="@drawable/edittext_border"
+        android:textAlignment="center"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/black"/>
+
+    <EditText
+        android:id="@+id/editTextEmailCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextNameCreate"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
         android:autofillHints="Mail"
         android:textSize="15sp"
         android:fontFamily="monospace"
@@ -40,7 +56,7 @@
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextEmail"
+        android:layout_below="@id/editTextEmailCreate"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="10dp"
         android:hint="@string/login_password_hint"
@@ -53,50 +69,46 @@
         android:autofillHints="Password"
         android:textColorHint="@color/black"/>
 
-    <Button
-        android:id="@+id/buttonLogin"
+    <EditText
+        android:id="@+id/editConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/swt_save_button"
+        android:layout_below="@id/editTextPassword"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/login_password_hint2"
+        android:background="@drawable/edittext_border"
+        android:textSize="15sp"
+        android:fontFamily="monospace"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:inputType="textPassword"
+        android:autofillHints="Password"
+        android:textColorHint="@color/black"/>
+
+    <Button
+        android:id="@+id/buttonCreateAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editConfirmPassword"
         android:layout_marginHorizontal="50dp"
         android:fontFamily="monospace"
-        android:textStyle="bold"
         android:textSize="15sp"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/blue"
-        android:text="@string/login_LoginButton_text" />
-
-    <Switch
-        android:id="@+id/swt_save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_alignStart="@id/editTextPassword"
-        android:layout_marginTop="10dp"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        android:text="@string/create_account"/>
 
     <TextView
-        android:id="@+id/swt_save_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save_login_user_and_password"
-        android:layout_toEndOf="@id/swt_save_button"
-        android:layout_alignTop="@id/swt_save_button"
-        android:textStyle="bold"
-        android:layout_marginStart="8dp"/>
-
-    <TextView
-        android:id="@+id/labelCreateAccount"
+        android:id="@+id/labelHaveAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:textAlignment="center"
         android:layout_marginBottom="15dp"
-        android:textSize="15sp"
-        android:text="@string/login_CreateAccount_label"
+        android:text="@string/login_Have_Account"
         android:fontFamily="monospace"
         android:textColor="@color/black"
         android:textStyle="bold"/>
-
 </RelativeLayout>

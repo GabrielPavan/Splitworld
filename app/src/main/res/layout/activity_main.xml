@@ -20,7 +20,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="fitCenter"
-            android:layout_weight="0.5"
+            android:layout_weight="0.25"
             android:src="@drawable/terra"
             android:layout_marginEnd="8dp"/>
 
@@ -28,7 +28,7 @@
             android:id="@+id/textDestiny"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:text="Your Destiny"
             android:textStyle="bold"
             android:textColor="@color/black"

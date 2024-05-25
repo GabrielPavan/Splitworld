@@ -2,8 +2,18 @@
     <string name="app_name">Splitworld</string>
     <string name="login_user_hint">Mail</string>
     <string name="login_password_hint">Password</string>
+    <string name="login_password_hint2">Confirm Password</string>
+    <string name="login_name_hint">Name</string>
     <string name="login_LoginButton_text">Login</string>
-    <string name="login_WithoutAccount_text">Access without account</string>
     <string name="login_main_img_description">Main Logo</string>
     <string name="login_CreateAccount_label">Create a account</string>
+    <string name="Expense_Image">Dolar</string>
+    <string name="example_expense">Example expense</string>
+    <string name="expense_value">$999</string>
+    <string name="expense_description">Expense description</string>
+    <string name="payed_by">Payed by:</string>
+    <string name="payer">Payer</string>
+    <string name="create_account">Create account</string>
+    <string name="login_Have_Account">Already have an account</string>
+    <string name="save_login_user_and_password">Save Login</string>
 </resources>
