@@ -48,6 +48,7 @@ public class MemberDAO extends AbstrataDAO {
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     MemberModel member = new MemberModel();
+                    member.setId(cursor.getInt(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_ID)));
                     member.setName(cursor.getString(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_NAME)));
                     member.setTotal_paid(cursor.getDouble(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_TOTAL_PAID)));
                     member.setTotal_loan(cursor.getDouble(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_TOTAL_LOAN)));
@@ -61,5 +62,16 @@ public class MemberDAO extends AbstrataDAO {
             Close();
         }
         return members;
+    }
+
+    public int deleteMember(int id) {
+        int rowsAffected = 0;
+        try {
+            Open();
+            rowsAffected = db.delete(MemberModel.TABLE_NAME, MemberModel.COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        } finally {
+            Close();
+        }
+        return rowsAffected;
     }
 }

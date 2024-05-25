@@ -1,5 +1,7 @@
-package com.example.splitworld.util.adpters;
+package com.example.splitworld.util.adapters;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +18,23 @@ import java.util.List;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberViewHolder> {
 
-    private List<MemberModel> memberList;
+    public interface OnMemberDeleteListener {
+        void onMemberDelete(MemberModel member, int position);
+    }
+    public interface OnMemberAddListener {
+        void onMemberAdd(MemberModel member);
+    }
 
-    public MemberAdapter(List<MemberModel> memberList) {
+    private List<MemberModel> memberList;
+    private Context context;
+    private OnMemberDeleteListener deleteListener;
+    private OnMemberAddListener addListener;
+
+    public MemberAdapter(Context context, List<MemberModel> memberList, OnMemberDeleteListener deleteListener, OnMemberAddListener addListener) {
+        this.context = context;
         this.memberList = memberList;
+        this.deleteListener = deleteListener;
+        this.addListener = addListener;
     }
 
     @NonNull
@@ -36,6 +51,17 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
         holder.textViewMemberName.setText(member.getName());
         holder.textViewTotalBorrowed.setText("Borrowed: " + member.getTotal_loan());
         holder.textViewTotalPaid.setText("Paid: " + member.getTotal_paid());
+
+        holder.itemView.setOnClickListener(v -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Delete Member")
+                    .setMessage("Are you sure you want to delete " + member.getName() + "?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        deleteListener.onMemberDelete(member, position);
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        });
     }
 
     @Override

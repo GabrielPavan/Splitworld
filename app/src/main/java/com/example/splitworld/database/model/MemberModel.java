@@ -34,6 +34,9 @@ public class MemberModel {
         this.total_loan = total_loan;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getId() {
         return id;
     }

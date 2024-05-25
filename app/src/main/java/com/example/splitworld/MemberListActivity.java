@@ -14,40 +14,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splitworld.database.dao.MemberDAO;
 import com.example.splitworld.database.model.MemberModel;
-import com.example.splitworld.util.adpters.MemberAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.splitworld.util.adapters.MemberAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MemberListActivity extends AppCompatActivity {
+public class MemberListActivity extends AppCompatActivity implements MemberAdapter.OnMemberDeleteListener, MemberAdapter.OnMemberAddListener{
 
-    private RecyclerView recyclerViewMembers;
     private MemberAdapter memberAdapter;
+    private MemberDAO memberDAO;
     private List<MemberModel> memberList;
+    private Button fabAddMember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_members);
 
-        recyclerViewMembers = findViewById(R.id.recyclerViewMembers);
-        Button fabAddMember = findViewById(R.id.fabAddMember);
-
-        MemberDAO memberDAO = new MemberDAO(MemberListActivity.this);
-
+        memberDAO = new MemberDAO(this);
         memberList = memberDAO.findAll();
-        memberAdapter = new MemberAdapter(memberList);
 
-        recyclerViewMembers.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewMembers.setAdapter(memberAdapter);
-
+        fabAddMember = findViewById(R.id.fabAddMember);
         fabAddMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAddMemberDialog();
             }
         });
+
+        RecyclerView recyclerViewMembers = findViewById(R.id.recyclerViewMembers);
+        recyclerViewMembers.setLayoutManager(new LinearLayoutManager(this));
+
+        memberAdapter = new MemberAdapter(this, memberList, this, this);
+        recyclerViewMembers.setAdapter(memberAdapter);
     }
 
     private void showAddMemberDialog() {
@@ -62,24 +60,32 @@ public class MemberListActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String memberName = input.getText().toString();
                 if (!memberName.isEmpty()) {
-                    MemberDAO memberDAO = new MemberDAO(MemberListActivity.this);
-                    MemberModel memberModel = new MemberModel(memberName, 0.0, 0.0);
-                    memberDAO.Insert(memberModel);
-                    memberList.add(memberModel);
-                    memberAdapter.notifyItemInserted(memberList.size() - 1);
+                    onMemberAdd(new MemberModel(memberName, 0.0, 0.0));
                 } else {
                     Toast.makeText(MemberListActivity.this, "Name cannot be empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
-
         builder.show();
+    }
+
+    @Override
+    public void onMemberDelete(MemberModel member, int position) {
+        memberDAO.deleteMember(member.getId());
+        memberList.remove(position);
+        memberAdapter.notifyItemRemoved(position);
+        memberAdapter.notifyItemRangeChanged(position, memberList.size());
+    }
+    @Override
+    public void onMemberAdd(MemberModel member) {
+        memberDAO.Insert(member);
+        memberList.add(member);
+        memberAdapter.notifyItemInserted(memberList.size() - 1);
     }
 }
