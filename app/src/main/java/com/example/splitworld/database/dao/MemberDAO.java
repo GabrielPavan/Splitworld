@@ -101,7 +101,18 @@ public class MemberDAO extends AbstrataDAO {
         }
         return memberModel;
     }
-
+    public int updateTotalPaid(int id, double totalPaid) {
+        int rowsAffected = 0;
+        try {
+            Open();
+            ContentValues values = new ContentValues();
+            values.put(MemberModel.COLUMN_TOTAL_PAID, totalPaid);
+            rowsAffected = db.update(MemberModel.TABLE_NAME, values, MemberModel.COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        } finally {
+            Close();
+        }
+        return rowsAffected;
+    }
     public int deleteMember(int id) {
         int rowsAffected = 0;
         try {

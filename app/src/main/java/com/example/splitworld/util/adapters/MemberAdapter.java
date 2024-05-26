@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.splitworld.MemberListActivity;
 import com.example.splitworld.R;
 import com.example.splitworld.database.model.MemberModel;
 
@@ -56,6 +58,10 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
                     .setTitle("Delete Member")
                     .setMessage("Are you sure you want to delete " + member.getName() + "?")
                     .setPositiveButton("Yes", (dialog, which) -> {
+                        if(member.getTotal_paid() > 0){
+                            Toast.makeText(context, "This member has transactions that cannot be deleted", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                         deleteListener.onMemberDelete(member, position);
                     })
                     .setNegativeButton("No", null)

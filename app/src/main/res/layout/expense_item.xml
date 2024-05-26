@@ -1,75 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="100dp"
-    android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:padding="12dp">
 
     <ImageView
         android:id="@+id/itemImage"
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:layout_margin="12dp"
+        android:layout_marginEnd="12dp"
         android:scaleType="fitCenter"
         android:src="@drawable/dolar"
         android:contentDescription="@string/Expense_Image" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/itemImage">
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/itemImage"
+        android:paddingEnd="12dp">
 
         <TextView
             android:id="@+id/ExpenseTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"
             android:fontFamily="monospace"
             android:text="@string/example_expense"
-            android:textSize="20sp" />
+            android:textSize="15sp"
+            android:layout_marginBottom="4dp"/>
 
         <TextView
             android:id="@+id/ExpenseValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
-            android:layout_marginTop="5dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:text="@string/expense_value"
             android:fontFamily="monospace"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/ExpenseDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ExpenseValue"
+            android:layout_below="@id/ExpenseTitle"
+            android:layout_toStartOf="@id/ExpenseValue"
             android:text="@string/expense_description"
-            android:layout_margin="10sp"
             android:fontFamily="monospace"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/ExpensePayedBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ExpenseDescription"
+            android:layout_below="@id/ExpenseDescription"
             android:text="@string/payed_by"
-            android:layout_marginStart="10dp"
             android:fontFamily="monospace"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginEnd="4dp"/>
 
         <TextView
             android:id="@+id/ExpensePayer"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ExpenseDescription"
+            android:layout_below="@id/ExpenseDescription"
             android:layout_toEndOf="@id/ExpensePayedBy"
-            android:layout_marginHorizontal="10dp"
             android:text="@string/payer"
             android:fontFamily="monospace"
             android:textSize="15sp"/>
-
     </RelativeLayout>
 
 </RelativeLayout>

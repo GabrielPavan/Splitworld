@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splitworld.database.dao.MemberDAO;
+import com.example.splitworld.database.dao.TransactionsBetweenMembersHeadersDAO;
 import com.example.splitworld.database.model.MemberModel;
+import com.example.splitworld.database.model.TransactionsBetweenMembersHeadersModel;
 import com.example.splitworld.util.adapters.MemberAdapter;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class MemberListActivity extends AppCompatActivity implements MemberAdapt
 
     private MemberAdapter memberAdapter;
     private MemberDAO memberDAO;
+    private TransactionsBetweenMembersHeadersDAO transactionsBetweenMembersHeadersDAO;
     private List<MemberModel> memberList;
     private Button fabAddMember;
 
@@ -31,6 +34,10 @@ public class MemberListActivity extends AppCompatActivity implements MemberAdapt
         setContentView(R.layout.activity_members);
 
         memberDAO = new MemberDAO(this);
+        transactionsBetweenMembersHeadersDAO = new TransactionsBetweenMembersHeadersDAO(this);
+
+        memberList = memberDAO.findAll();
+        updateTotalSpent(memberList);
         memberList = memberDAO.findAll();
 
         fabAddMember = findViewById(R.id.fabAddMember);
@@ -74,7 +81,12 @@ public class MemberListActivity extends AppCompatActivity implements MemberAdapt
         });
         builder.show();
     }
-
+    private void updateTotalSpent(List<MemberModel> memberList){
+        for (MemberModel member : memberList) {
+            double totalAmount = transactionsBetweenMembersHeadersDAO.getTotalTransactionsByMemberId(member.getId());
+            memberDAO.updateTotalPaid(member.getId(), totalAmount);
+        }
+    }
     @Override
     public void onMemberDelete(MemberModel member, int position) {
         memberDAO.deleteMember(member.getId());

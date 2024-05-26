@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ExpenseAdapter.On
     private TextView textViewTotalExpense;
     private ImageView iconMembers;
     private ImageView iconAddExpense;
+    private ImageView iconCalendar;
     private ExpenseAdapter expenseAdapter;
     private List<TransactionsBetweenMembersHeadersModel> transactionsBetweenMembersHeadersModelList;
     private TransactionsBetweenMembersHeadersDAO transactionsBetweenMembersHeadersDAO;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements ExpenseAdapter.On
         textViewTotalExpense = findViewById(R.id.textTotalValue);
         iconMembers = findViewById(R.id.iconBotton1);
         iconAddExpense = findViewById(R.id.iconBotton2);
+        iconCalendar = findViewById(R.id.iconBotton3);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         textViewDestiny.setText(preferences.getString(SharedKey.KEY_DESTINY, ""));
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements ExpenseAdapter.On
             startActivity(new Intent(MainActivity.this, AddExpenseActivity.class));
             finish();
         });
+        iconCalendar.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CalendarActivity.class)));
     }
 
     private void setupRecyclerView() {

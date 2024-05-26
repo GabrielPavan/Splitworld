@@ -61,6 +61,23 @@ public class TransactionsBetweenMembersHeadersDAO extends AbstrataDAO {
         }
         return rowsAffected;
     }
+    public double getTotalTransactionsByMemberId(int memberId) {
+        double total = 0;
+        Cursor cursor = null;
+        try {
+            Open();
+            cursor = db.rawQuery("SELECT SUM(" + TransactionsBetweenMembersHeadersModel.COLUMN_TOTAL + ") as total FROM " + TransactionsBetweenMembersHeadersModel.TABLE_NAME + " WHERE " + TransactionsBetweenMembersHeadersModel.COLUMN_PAYED_BY + " = ?", new String[]{String.valueOf(memberId)});
+            if (cursor != null && cursor.moveToFirst()) {
+                total = cursor.getDouble(cursor.getColumnIndexOrThrow("total"));
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            Close();
+        }
+        return total;
+    }
 
     public List<TransactionsBetweenMembersHeadersModel> findAll() {
         List<TransactionsBetweenMembersHeadersModel> transactions = new ArrayList<>();
