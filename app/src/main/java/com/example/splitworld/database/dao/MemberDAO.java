@@ -80,6 +80,28 @@ public class MemberDAO extends AbstrataDAO {
         }
         return name;
     }
+    public MemberModel findById(int id) {
+        Cursor cursor = null;
+        MemberModel memberModel = null;
+        try {
+            Open();
+            cursor = db.query(MemberModel.TABLE_NAME, columns, MemberModel.COLUMN_ID + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                memberModel = new MemberModel();
+                memberModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_ID)));
+                memberModel.setName(cursor.getString(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_NAME)));
+                memberModel.setTotal_paid(cursor.getDouble(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_TOTAL_PAID)));
+                memberModel.setTotal_loan(cursor.getDouble(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_TOTAL_LOAN)));
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            Close();
+        }
+        return memberModel;
+    }
+
     public int deleteMember(int id) {
         int rowsAffected = 0;
         try {

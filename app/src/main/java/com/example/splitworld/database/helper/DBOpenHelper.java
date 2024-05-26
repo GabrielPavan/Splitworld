@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.splitworld.database.model.MemberModel;
 import com.example.splitworld.database.model.TransactionsBetweenMembersHeadersModel;
-import com.example.splitworld.database.model.TransactionsBetweenMembersLinesModel;
 import com.example.splitworld.database.model.UserModel;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
@@ -20,7 +19,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(UserModel.CREATE_TABLE);
         db.execSQL(MemberModel.CREATE_TABLE);
         db.execSQL(TransactionsBetweenMembersHeadersModel.CREATE_TABLE);
-        db.execSQL(TransactionsBetweenMembersLinesModel.CREATE_TABLE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

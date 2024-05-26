@@ -7,10 +7,8 @@ public class TransactionsBetweenMembersHeadersModel {
             COLUMN_TOTAL = "total_value",
             COLUMN_EXPENSE_TYPE = "expense_type",
             COLUMN_DESCRIPTION = "description",
-            COLUMN_EQUAL_DIVISION = "is_equal_division",
             COLUMN_PAYED_BY = "payed_by",
-            COLUMN_PAYED_BY_NAME = "payed_by_name",
-            COLUMN_DATE = "expense_date";
+            COLUMN_PAYED_BY_NAME = "payed_by_name";
 
     public static final String
             CREATE_TABLE =
@@ -21,9 +19,7 @@ public class TransactionsBetweenMembersHeadersModel {
                     + COLUMN_DESCRIPTION + " text not null, "
                     + COLUMN_PAYED_BY + " int not null, "
                     + COLUMN_PAYED_BY_NAME + " text not null, "
-                    + COLUMN_TOTAL + " double not null, "
-                    + COLUMN_EQUAL_DIVISION + " text not null, "
-                    + COLUMN_DATE + " text not null"
+                    + COLUMN_TOTAL + " double not null"
                     + ");";
     public static final String
             DROP_TABLE = "drop table if exists " + TABLE_NAME + ";";
@@ -51,23 +47,11 @@ public class TransactionsBetweenMembersHeadersModel {
     public void setExpense_description(String expense_description) {
         this.expense_description = expense_description;
     }
-    public String getExpense_date() {
-        return expense_date;
-    }
-    public void setExpense_date(String expense_date) {
-        this.expense_date = expense_date;
-    }
     public double getExpense_total_value() {
         return expense_total_value;
     }
     public void setExpense_total_value(double expense_total_value) {
         this.expense_total_value = expense_total_value;
-    }
-    public String isIs_equal_division() {
-        return is_equal_division;
-    }
-    public void setIs_equal_division(String is_equal_division) {
-        this.is_equal_division = is_equal_division;
     }
     public int getPayed_by() {
         return payed_by;
@@ -80,8 +64,5 @@ public class TransactionsBetweenMembersHeadersModel {
     }
     public void setPayed_by_name(String payed_by_name) {
         this.payed_by_name = payed_by_name;
-    }
-    public String getIs_equal_division() {
-        return is_equal_division;
     }
 }

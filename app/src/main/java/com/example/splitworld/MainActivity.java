@@ -16,18 +16,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splitworld.database.dao.TransactionsBetweenMembersHeadersDAO;
+import com.example.splitworld.database.model.MemberModel;
 import com.example.splitworld.database.model.TransactionsBetweenMembersHeadersModel;
 import com.example.splitworld.util.SharedKey;
 import com.example.splitworld.util.adapters.ExpenseAdapter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ExpenseAdapter.OnExpenseDeleteListener, ExpenseAdapter.OnExpenseEditListener{
     private TextView textViewDestiny;
+    private TextView textViewTotalExpense;
     private ImageView iconMembers;
     private ImageView iconAddExpense;
     private ExpenseAdapter expenseAdapter;
     private List<TransactionsBetweenMembersHeadersModel> transactionsBetweenMembersHeadersModelList;
+    private TransactionsBetweenMembersHeadersDAO transactionsBetweenMembersHeadersDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textViewDestiny = findViewById(R.id.textDestiny);
+        textViewTotalExpense = findViewById(R.id.textTotalValue);
         iconMembers = findViewById(R.id.iconBotton1);
         iconAddExpense = findViewById(R.id.iconBotton2);
 
@@ -45,9 +49,10 @@ public class MainActivity extends AppCompatActivity {
             showChangeDestinyDialog();
         }
 
-        TransactionsBetweenMembersHeadersDAO transactionsBetweenMembersHeadersDAO = new TransactionsBetweenMembersHeadersDAO(this);
+        transactionsBetweenMembersHeadersDAO = new TransactionsBetweenMembersHeadersDAO(this);
         transactionsBetweenMembersHeadersModelList = transactionsBetweenMembersHeadersDAO.findAll();
 
+        setupTotal(transactionsBetweenMembersHeadersModelList);
         setupRecyclerView();
 
         iconMembers.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MemberListActivity.class)));
@@ -60,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.feedRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        expenseAdapter = new ExpenseAdapter(transactionsBetweenMembersHeadersModelList);
+        expenseAdapter = new ExpenseAdapter(this,transactionsBetweenMembersHeadersModelList, this, this);
         recyclerView.setAdapter(expenseAdapter);
     }
 
@@ -88,5 +93,30 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel", (dialog, which) -> {});
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void setupTotal(List<TransactionsBetweenMembersHeadersModel> total){
+        double totalAmount = 0.0;
+        for (TransactionsBetweenMembersHeadersModel transaction : total) {
+            totalAmount += transaction.getExpense_total_value();
+        }
+        textViewTotalExpense.setText(String.format("$%.2f", totalAmount));
+    }
+
+    @Override
+    public void OnExpenseDelete(TransactionsBetweenMembersHeadersModel expense, int position) {
+        transactionsBetweenMembersHeadersDAO.deleteById(expense.getId());
+        transactionsBetweenMembersHeadersModelList.remove(position);
+        expenseAdapter.notifyItemRemoved(position);
+        expenseAdapter.notifyItemRangeChanged(position, transactionsBetweenMembersHeadersModelList.size());
+        setupTotal(transactionsBetweenMembersHeadersModelList);
+    }
+
+    @Override
+    public void OnExpenseEdit(TransactionsBetweenMembersHeadersModel expense) {
+        Intent intent = new Intent(MainActivity.this, EditExpenseActivity.class);
+        intent.putExtra("id_expense", expense.getId());
+        startActivity(intent);
+        finish();
     }
 }

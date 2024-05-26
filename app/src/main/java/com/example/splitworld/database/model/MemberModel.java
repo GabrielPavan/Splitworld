@@ -3,6 +3,7 @@ package com.example.splitworld.database.model;
 import androidx.annotation.NonNull;
 
 import java.security.PublicKey;
+import java.util.Objects;
 
 public class MemberModel {
     public static final String TABLE_NAME = "member";
@@ -36,12 +37,23 @@ public class MemberModel {
         this.total_loan = total_loan;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MemberModel that = (MemberModel) o;
+        return id == that.id && Double.compare(total_loan, that.total_loan) == 0 && Double.compare(total_paid, that.total_paid) == 0 && Objects.equals(name, that.name);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, total_loan, total_paid);
+    }
+
     @NonNull
     @Override
     public String toString() {
         return getName();
     }
-
     public void setId(int id) {
         this.id = id;
     }

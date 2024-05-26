@@ -16,4 +16,12 @@
     <string name="create_account">Create account</string>
     <string name="login_Have_Account">Already have an account</string>
     <string name="save_login_user_and_password">Save Login</string>
+    <string-array name="expense_types">
+        <item>Gas</item>
+        <item>Air ticket</item>
+        <item>Food</item>
+        <item>Hosting</item>
+        <item>Entertainment</item>
+        <item>Other</item>
+    </string-array>
 </resources>

@@ -49,8 +49,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
     public void onBindViewHolder(@NonNull MemberViewHolder holder, int position) {
         MemberModel member = memberList.get(position);
         holder.textViewMemberName.setText(member.getName());
-        holder.textViewTotalBorrowed.setText("Borrowed: " + member.getTotal_loan());
-        holder.textViewTotalPaid.setText("Paid: " + member.getTotal_paid());
+        holder.textViewTotalPaid.setText("Total spent: " + member.getTotal_paid());
 
         holder.itemView.setOnClickListener(v -> {
             new AlertDialog.Builder(context)
@@ -79,7 +78,6 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
             super(itemView);
             iconMember = itemView.findViewById(R.id.iconMember);
             textViewMemberName = itemView.findViewById(R.id.textViewMemberName);
-            textViewTotalBorrowed = itemView.findViewById(R.id.textViewTotalBorrowed);
             textViewTotalPaid = itemView.findViewById(R.id.textViewTotalPaid);
         }
     }

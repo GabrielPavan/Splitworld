@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="Member Name"
             android:fontFamily="monospace"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -35,22 +35,14 @@
             android:layout_marginTop="4dp">
 
             <TextView
-                android:id="@+id/textViewTotalBorrowed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="Borrowed: 0.00"
-                android:textColor="@color/red"
-                android:textSize="12sp" />
-
-            <TextView
                 android:id="@+id/textViewTotalPaid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Paid: 0.00"
+                android:text="Total spent: 0.00"
                 android:fontFamily="monospace"
+                android:textStyle="bold"
                 android:textColor="@color/green"
-                android:textSize="12sp" />
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 
