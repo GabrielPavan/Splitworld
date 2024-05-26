@@ -1,5 +1,7 @@
 package com.example.splitworld.database.model;
 
+import androidx.annotation.NonNull;
+
 import java.security.PublicKey;
 
 public class MemberModel {
@@ -32,6 +34,12 @@ public class MemberModel {
         this.name = name;
         this.total_paid = total_paid;
         this.total_loan = total_loan;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
     }
 
     public void setId(int id) {

@@ -63,7 +63,23 @@ public class MemberDAO extends AbstrataDAO {
         }
         return members;
     }
-
+    public String findNameById(int id) {
+        String name = null;
+        Cursor cursor = null;
+        try {
+            Open();
+            cursor = db.query(MemberModel.TABLE_NAME, new String[]{MemberModel.COLUMN_NAME}, MemberModel.COLUMN_ID + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                name = cursor.getString(cursor.getColumnIndexOrThrow(MemberModel.COLUMN_NAME));
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            Close();
+        }
+        return name;
+    }
     public int deleteMember(int id) {
         int rowsAffected = 0;
         try {

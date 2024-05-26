@@ -8,24 +8,27 @@
 
     <TextView
         android:id="@+id/textViewHeader"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Members"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:fontFamily="monospace"
+        android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewMembers"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
+        android:paddingVertical="16dp"
+        android:background="@color/blue"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMembers"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
+        tools:listitem="@layout/member_item"
         app:layout_constraintTop_toBottomOf="@id/textViewHeader"
         app:layout_constraintBottom_toTopOf="@id/fabAddMember"
         app:layout_constraintStart_toStartOf="parent"
