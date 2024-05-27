@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements ExpenseAdapter.On
             finish();
         });
         iconCalendar.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CalendarActivity.class)));
+        textViewTotalExpense.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, ReportActivity.class));
+            finish();
+        });
     }
 
     private void setupRecyclerView() {
@@ -93,7 +97,10 @@ public class MainActivity extends AppCompatActivity implements ExpenseAdapter.On
                 showChangeDestinyDialog();
             }
         });
-        builder.setNegativeButton("Cancel", (dialog, which) -> {});
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+            Toast.makeText(MainActivity.this, "Destiny cannot be empty", Toast.LENGTH_SHORT).show();
+            showChangeDestinyDialog();
+        });
         AlertDialog dialog = builder.create();
         dialog.show();
     }

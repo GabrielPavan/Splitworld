@@ -32,6 +32,11 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
     private OnMemberDeleteListener deleteListener;
     private OnMemberAddListener addListener;
 
+    public MemberAdapter(Context context, List<MemberModel> memberList){
+        this.context = context;
+        this.memberList = memberList;
+    }
+
     public MemberAdapter(Context context, List<MemberModel> memberList, OnMemberDeleteListener deleteListener, OnMemberAddListener addListener) {
         this.context = context;
         this.memberList = memberList;

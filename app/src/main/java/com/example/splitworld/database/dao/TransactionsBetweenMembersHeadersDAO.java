@@ -130,7 +130,14 @@ public class TransactionsBetweenMembersHeadersDAO extends AbstrataDAO {
         }
         return transaction;
     }
-
+    public void deleteAll() {
+        try {
+            Open();
+            db.delete(TransactionsBetweenMembersHeadersModel.TABLE_NAME, null, null);
+        } finally {
+            Close();
+        }
+    }
     public void deleteById(int id) {
         try {
             Open();

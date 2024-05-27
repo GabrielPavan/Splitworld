@@ -29,6 +29,7 @@
         <activity android:name=".AddExpenseActivity"/>
         <activity android:name=".EditExpenseActivity"/>
         <activity android:name=".CalendarActivity"/>
+        <activity android:name=".ReportActivity"/>
     </application>
 
 </manifest>
