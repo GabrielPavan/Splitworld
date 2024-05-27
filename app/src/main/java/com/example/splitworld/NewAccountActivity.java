@@ -62,6 +62,14 @@ public class NewAccountActivity extends AppCompatActivity {
 
                 userDAO.Insert(userModel);
                 memberDAO.Insert(memberModel);
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(NewAccountActivity.this);
+                SharedPreferences.Editor edit = preferences.edit();
+                edit.putString(SharedKey.KEY_MAIL, edtMail.getText().toString());
+                edit.putString(SharedKey.KEY_PASSWORD, edtPassword.getText().toString());
+                edit.putBoolean(SharedKey.KEY_SWITCH, true);
+                edit.apply();
+
                 showSuccessInsertDialog();
             } else {
                 Toast.makeText(NewAccountActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
