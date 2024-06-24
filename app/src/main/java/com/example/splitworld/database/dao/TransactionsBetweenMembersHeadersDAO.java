@@ -78,7 +78,6 @@ public class TransactionsBetweenMembersHeadersDAO extends AbstrataDAO {
         }
         return total;
     }
-
     public List<TransactionsBetweenMembersHeadersModel> findAll() {
         List<TransactionsBetweenMembersHeadersModel> transactions = new ArrayList<>();
         Cursor cursor = null;

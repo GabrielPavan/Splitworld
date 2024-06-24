@@ -2,7 +2,7 @@ package com.example.splitworld.api.model;
 
 import java.io.Serializable;
 
-public class TravelGasCost implements Serializable {
+public class TravelGasCost {
 
     private long id, viagemId;
     private int totalEstimadoKM, totalVeiculos;
@@ -16,7 +16,6 @@ public class TravelGasCost implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
     public long getViagemId() {
         return viagemId;
     }

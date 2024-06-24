@@ -2,6 +2,7 @@ package com.example.splitworld.api.endpoint;
 
 import com.example.splitworld.api.model.Response;
 import com.example.splitworld.api.model.Travel;
+import com.example.splitworld.api.model.TravelHostingCost;
 
 import java.util.ArrayList;
 

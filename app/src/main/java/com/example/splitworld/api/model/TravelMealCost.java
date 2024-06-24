@@ -2,7 +2,7 @@ package com.example.splitworld.api.model;
 
 import java.io.Serializable;
 
-public class TravelMealCost implements Serializable {
+public class TravelMealCost implements Serializable{
 
     private long id, viagemId;
     private double custoRefeicao;
@@ -22,7 +22,7 @@ public class TravelMealCost implements Serializable {
     public void setViagemId(long viagemId) {
         this.viagemId = viagemId;
     }
-    public double getCustoRefeicao() {
+    public double getCustoRefeicao(double sum) {
         return custoRefeicao;
     }
     public void setCustoRefeicao(double custoRefeicao) {

@@ -1,5 +1,7 @@
 package com.example.splitworld.api.model;
 
+import com.example.splitworld.database.model.TransactionsBetweenMembersHeadersModel;
+
 import java.io.Serializable;
 
 public class TravelOtherCost implements Serializable {
@@ -9,7 +11,11 @@ public class TravelOtherCost implements Serializable {
     private double valor;
     
     public TravelOtherCost() {}
-
+    public TravelOtherCost(TransactionsBetweenMembersHeadersModel transactionsBetweenMembersHeadersModel){
+        this.id = transactionsBetweenMembersHeadersModel.getId();
+        this.entretenimento = transactionsBetweenMembersHeadersModel.getExpense_description();
+        this.valor = transactionsBetweenMembersHeadersModel.getExpense_total_value();
+    }
     public long getId() {
         return id;
     }

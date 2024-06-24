@@ -1,20 +1,23 @@
 package com.example.splitworld.api.model;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.Gson;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Travel implements Serializable {
+public class Travel {
 
     private long id, usuario, idConta;
     private int totalViajantes, duracaoViagem;
     private double custoTotalViagem, custoPorPessoa;
     private String local;
-    private TravelGasCost travelGasCost;
-    private TravelAirTicketCost travelAirTicketCost;
-    private TravelMealCost travelMealCost;
-    private TravelHostingCost travelHostingCost;
-    private List<TravelOtherCost> travelOtherCosts;
+    private TravelGasCost gasolina;
+    private TravelAirTicketCost aereo;
+    private TravelMealCost refeicao;
+    private TravelHostingCost hospedagem;
+    private List<TravelOtherCost> listaEntretenimento;
 
     public Travel(){}
 
@@ -66,34 +69,42 @@ public class Travel implements Serializable {
     public void setLocal(String local) {
         this.local = local;
     }
-    public TravelGasCost getTravelGasCost() {
-        return travelGasCost;
+    public TravelGasCost getGasolina() {
+        return gasolina;
     }
-    public void setTravelGasCost(TravelGasCost travelGasCost) {
-        this.travelGasCost = travelGasCost;
+    public void setGasolina(TravelGasCost gasolina) {
+        this.gasolina = gasolina;
     }
-    public TravelAirTicketCost getTravelAirTicketCost() {
-        return travelAirTicketCost;
+    public TravelAirTicketCost getAereo() {
+        return aereo;
     }
-    public void setTravelAirTicketCost(TravelAirTicketCost travelAirTicketCost) {
-        this.travelAirTicketCost = travelAirTicketCost;
+    public void setAereo(TravelAirTicketCost aereo) {
+        this.aereo = aereo;
     }
-    public TravelMealCost getTravelMealCost() {
-        return travelMealCost;
+    public TravelMealCost getRefeicao() {
+        return refeicao;
     }
-    public void setTravelMealCost(TravelMealCost travelMealCost) {
-        this.travelMealCost = travelMealCost;
+    public void setRefeicao(TravelMealCost refeicao) {
+        this.refeicao = refeicao;
     }
-    public TravelHostingCost getTravelHostingCost() {
-        return travelHostingCost;
+    public TravelHostingCost getHospedagem() {
+        return hospedagem;
     }
-    public void setTravelHostingCost(TravelHostingCost travelHostingCost) {
-        this.travelHostingCost = travelHostingCost;
+    public void setHospedagem(TravelHostingCost hospedagem) {
+        this.hospedagem = hospedagem;
     }
-    public List<TravelOtherCost> getTravelOtherCosts() {
-        return travelOtherCosts;
+    public List<TravelOtherCost> getListaEntretenimento() {
+        return listaEntretenimento;
     }
-    public void setTravelOtherCosts(List<TravelOtherCost> travelOtherCosts) {
-        this.travelOtherCosts = travelOtherCosts;
+    public void setListaEntretenimento(List<TravelOtherCost> listaEntretenimento) {
+        this.listaEntretenimento = listaEntretenimento;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        String json = gson.toJson(this);
+        return json;
     }
 }

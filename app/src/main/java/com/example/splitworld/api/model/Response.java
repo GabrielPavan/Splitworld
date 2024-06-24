@@ -4,28 +4,28 @@ import java.io.Serializable;
 
 public class Response implements Serializable {
 
-    private boolean Sucesso;
-    private String Mensagem;
-    private int ChavePrimaria;
+    private boolean sucesso;
+    private String mensagem;
+    private int chavePrimaria;
 
     public Response(){}
 
     public boolean isSucesso() {
-        return Sucesso;
+        return sucesso;
     }
     public void setSucesso(boolean sucesso) {
-        Sucesso = sucesso;
+        this.sucesso = sucesso;
     }
     public String getMensagem() {
-        return Mensagem;
+        return mensagem;
     }
     public void setMensagem(String mensagem) {
-        Mensagem = mensagem;
+        this.mensagem = mensagem;
     }
     public int getChavePrimaria() {
-        return ChavePrimaria;
+        return chavePrimaria;
     }
     public void setChavePrimaria(int chavePrimaria) {
-        ChavePrimaria = chavePrimaria;
+        this.chavePrimaria = chavePrimaria;
     }
 }
